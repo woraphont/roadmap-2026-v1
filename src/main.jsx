@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Roadmap90Days from "../roadmap-90days.jsx";
+import Roadmap120Days from "../roadmap-120days.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Roadmap90Days />
+    <Roadmap120Days />
   </React.StrictMode>
 );

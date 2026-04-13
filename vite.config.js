@@ -3,5 +3,5 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/roadmap-90days/",
+  base: "/roadmap-120days/",
 });
