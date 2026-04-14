@@ -2,6 +2,8 @@ import { useState } from "react";
 
 export default function WeekCard({ week, isCurrentWeek, checkboxes, note, onCheckbox, onNote, currentDay }) {
   const [expanded, setExpanded] = useState(isCurrentWeek);
+  const [showPrompt, setShowPrompt] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const isAWS = week.phase === "aws";
   const isDone = currentDay > week.endDay;
@@ -113,6 +115,47 @@ export default function WeekCard({ week, isCurrentWeek, checkboxes, note, onChec
               className={`w-full text-sm border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 dark:text-white text-gray-700 focus:outline-none focus:ring-2 ${ringColor} resize-none placeholder-gray-300 dark:placeholder-gray-600`}
             />
           </div>
+
+          {/* Claude Prompt */}
+          {week.claudePrompt && (
+            <div className={`mt-3 rounded-lg border overflow-hidden ${isAWS ? "border-amber-200 dark:border-amber-800/50" : "border-green-200 dark:border-green-800/50"}`}>
+              <button
+                onClick={() => setShowPrompt(!showPrompt)}
+                className={`w-full flex items-center justify-between px-3 py-2 text-xs font-medium transition-colors ${
+                  isAWS
+                    ? "bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/30"
+                    : "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-900/30"
+                }`}
+              >
+                <span>🤖 ถาม Claude Code · Week {week.weekNum}: {week.title}</span>
+                <span className={`transition-transform duration-200 ${showPrompt ? "rotate-180" : ""}`}>▼</span>
+              </button>
+              {showPrompt && (
+                <div className="px-3 py-3 bg-white dark:bg-gray-800/50">
+                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
+                    {week.claudePrompt}
+                  </p>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(week.claudePrompt).then(() => {
+                        setCopied(true);
+                        setTimeout(() => setCopied(false), 2000);
+                      });
+                    }}
+                    className={`mt-3 text-xs px-3 py-1.5 rounded-lg font-medium transition-all ${
+                      copied
+                        ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                        : isAWS
+                        ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 hover:bg-amber-200 dark:hover:bg-amber-900/50"
+                        : "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-900/50"
+                    }`}
+                  >
+                    {copied ? "✅ คัดลอกแล้ว!" : "📋 คัดลอก Prompt"}
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

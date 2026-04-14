@@ -10,6 +10,7 @@ export const WEEKS = [
       "MFA & STS",
       "AWS Organizations",
     ],
+    claudePrompt: "อธิบาย AWS Global Infrastructure: Region, AZ, Edge Location แตกต่างกันอย่างไร และช่วยสร้าง Lab IAM: สร้าง User, Group, Custom Policy ด้วย AWS CLI พร้อมทดสอบ least privilege principle เป็นภาษาไทย",
   },
   {
     id: 2, phase: "aws", weekNum: 2,
@@ -23,6 +24,7 @@ export const WEEKS = [
       "Placement Groups",
       "User Data scripts",
     ],
+    claudePrompt: "ช่วยสร้าง Lab EC2: สร้าง instance ด้วย AWS CLI, ตั้ง User Data ติดตั้ง Apache อัตโนมัติ, อธิบาย Placement Groups 3 แบบ (Cluster/Spread/Partition) และความต่าง On-Demand vs Reserved vs Spot Instances พร้อม use case เป็นภาษาไทย",
   },
   {
     id: 3, phase: "aws", weekNum: 3,
@@ -35,6 +37,7 @@ export const WEEKS = [
       "EBS types (gp3/io2)",
       "EFS & FSx",
     ],
+    claudePrompt: "ช่วยสร้าง Lab S3: สร้าง bucket, เปิด Versioning, ตั้ง Lifecycle Policy ย้ายไป Glacier หลัง 30 วัน, สร้าง Bucket Policy public read และ Pre-signed URL หมดอายุ 1 ชั่วโมง ด้วย AWS CLI พร้อมอธิบาย S3 storage classes ทั้งหมดว่าเลือกเมื่อไหร่",
   },
   {
     id: 4, phase: "aws", weekNum: 4,
@@ -48,6 +51,7 @@ export const WEEKS = [
       "PrivateLink",
       "SG vs NACL",
     ],
+    claudePrompt: "ช่วยสร้าง Lab VPC: ออกแบบ VPC ที่มี Public + Private Subnet ด้วย AWS CLI, ตั้ง Internet GW + NAT GW, อธิบาย Security Group (stateful) vs NACL (stateless) ต่างกันอย่างไร พร้อม ASCII diagram และ exam scenarios ที่ออกบ่อย",
   },
   {
     id: 5, phase: "aws", weekNum: 5,
@@ -59,6 +63,7 @@ export const WEEKS = [
       "Launch Templates",
       "Scaling policies",
     ],
+    claudePrompt: "ช่วยสร้าง Lab ALB + ASG: สร้าง Application Load Balancer กับ Target Group 2 EC2 instances ด้วย AWS CLI, ตั้ง Auto Scaling Group (min:1, max:3) พร้อม Target Tracking Scaling CPU 60%, ทดสอบ health check และอธิบาย ALB vs NLB vs GWLB เลือกเมื่อไหร่",
   },
   {
     id: 6, phase: "aws", weekNum: 6,
@@ -70,6 +75,7 @@ export const WEEKS = [
       "DynamoDB GSI/LSI",
       "ElastiCache Redis/Memcached",
     ],
+    claudePrompt: "อธิบาย RDS Multi-AZ vs Read Replica ต่างกันอย่างไร (ทั้ง purpose และ failover), DynamoDB GSI vs LSI เลือกเมื่อไหร่, Redis vs Memcached เลือกอะไร พร้อม exam scenarios 5 ข้อที่มักออกและสับสน เป็นภาษาไทย",
   },
   {
     id: 7, phase: "aws", weekNum: 7,
@@ -82,6 +88,7 @@ export const WEEKS = [
       "Route 53 routing policies",
       "CloudFront & WAF",
     ],
+    claudePrompt: "อธิบาย Lambda Cold Start คืออะไรและแก้ยังไง, Route 53 Routing Policies 6 แบบ (Simple/Weighted/Latency/Failover/Geolocation/Multi-value) ใช้เมื่อไหร่, ECS vs EKS vs Fargate เลือกอะไรใน scenario ไหน พร้อม exam tips เป็นภาษาไทย",
   },
   {
     id: 8, phase: "aws", weekNum: 8,
@@ -94,6 +101,7 @@ export const WEEKS = [
       "SQS / SNS / EventBridge",
       "Step Functions",
     ],
+    claudePrompt: "อธิบาย KMS Envelope Encryption ทำงานอย่างไร, GuardDuty vs Inspector vs Macie ต่างกันอย่างไรและใช้เมื่อไหร่, SQS vs SNS vs EventBridge เลือกอะไรเมื่อไหร่ พร้อม exam scenarios 5 ข้อที่มักออกและสับสน เป็นภาษาไทย",
   },
   {
     id: 9, phase: "aws", weekNum: 9,
@@ -106,6 +114,7 @@ export const WEEKS = [
       "Snow family",
       "Cost Explorer",
     ],
+    claudePrompt: "สรุป Well-Architected 5 Pillars แต่ละ pillar มี key service อะไรบ้าง, Migration 6R (Rehost/Replatform/Repurchase/Refactor/Retire/Retain) ใช้เมื่อไหร่, Snow Family (Snowcone/Snowball/Snowmobile) เลือกตาม data size ไหน พร้อม exam scenarios",
   },
   {
     id: 10, phase: "aws", weekNum: 10,
@@ -118,6 +127,7 @@ export const WEEKS = [
       "วิเคราะห์ข้อที่ผิด",
       "ทบทวน Cheat Sheets",
     ],
+    claudePrompt: "ช่วยออก Mock Exam AWS SAA-C03 จำนวน 20 ข้อ ครอบคลุมทุก domain (Compute, Storage, Network, Security, Database, Serverless) พร้อมเฉลยอธิบายเหตุผลทุกข้อ เน้นข้อที่มักสับสน เป็นภาษาไทย",
   },
   {
     id: 11, phase: "aws", weekNum: 11,
@@ -130,6 +140,7 @@ export const WEEKS = [
       "ตั้งเป้า 78%+ ก่อนจองสอบ",
       "สอบ AWS SAA-C03 🎯",
     ],
+    claudePrompt: "สรุป AWS SAA-C03 Cheat Sheet สำหรับสอบ: S3 storage classes เลือกเมื่อไหร่, EBS volume types, RDS Multi-AZ vs Read Replica, ALB vs NLB, SQS Standard vs FIFO, NAT Gateway vs NAT Instance, Security Group vs NACL — เป็น bullet points กระชับ ใช้ทบทวนก่อนสอบ",
   },
   // ── Phase 2: Terraform Associate ─────────────────────────────────────────
   {
@@ -143,6 +154,7 @@ export const WEEKS = [
       "Variables & Outputs",
       "Local values",
     ],
+    claudePrompt: "ช่วยสร้าง Lab Terraform Week 1: เขียน main.tf สร้าง EC2 t3.micro + Security Group บน AWS ด้วย HCL, อธิบาย terraform init/plan/apply/destroy ทีละขั้นตอน, folder structure ที่ดี และความต่าง Resource vs Data source เป็นภาษาไทย",
   },
   {
     id: 13, phase: "terraform", weekNum: 13,
@@ -155,6 +167,7 @@ export const WEEKS = [
       "State lock",
       "Workspaces",
     ],
+    claudePrompt: "ช่วยสร้าง Lab Terraform State: เขียน backend config ตั้ง Remote State บน S3 + DynamoDB locking, อธิบาย terraform import ใช้อย่างไร พร้อม example, state commands (list/show/mv/rm) ใช้เมื่อไหร่ และ Workspace ใช้แทน environment ได้ไหม เป็นภาษาไทย",
   },
   {
     id: 14, phase: "terraform", weekNum: 14,
@@ -167,6 +180,7 @@ export const WEEKS = [
       "Dynamic blocks",
       "Lifecycle rules",
     ],
+    claudePrompt: "ช่วยสร้าง Terraform Module: เขียน reusable VPC module รับ input cidr_block/environment/subnet_count และ output vpc_id/subnet_ids, อธิบาย count vs for_each ต่างกันอย่างไรและเลือกใช้เมื่อไหร่, lifecycle (create_before_destroy/prevent_destroy) ใช้เมื่อไหร่ เป็นภาษาไทย",
   },
   {
     id: 15, phase: "terraform", weekNum: 15,
@@ -179,6 +193,7 @@ export const WEEKS = [
       "Build real AWS infra with Terraform",
       "CI/CD basics",
     ],
+    claudePrompt: "ช่วยสร้าง Terraform Project สมบูรณ์: VPC + EC2 (ASG) + S3 + RDS บน AWS พร้อม Remote State บน S3, ตั้ง sensitive variable ให้ไม่ show ใน plan output และ GitHub Actions workflow รัน terraform plan เมื่อ PR และ apply เมื่อ merge main เป็นภาษาไทย",
   },
   {
     id: 16, phase: "terraform", weekNum: 16,
@@ -190,6 +205,7 @@ export const WEEKS = [
       "Review all CLI commands",
       "Focus: state & workflow & modules",
     ],
+    claudePrompt: "ช่วยออก Mock Exam Terraform Associate จำนวน 20 ข้อ ครอบคลุม: terraform workflow, state management, modules, variables, Terraform Cloud vs OSS, count vs for_each, lifecycle rules พร้อมเฉลยอธิบายเหตุผลทุกข้อ เป็นภาษาไทย",
   },
   {
     id: 17, phase: "terraform", weekNum: 17,
@@ -200,6 +216,7 @@ export const WEEKS = [
       "จอง exam slot",
       "สอบ Terraform Associate 🎯",
     ],
+    claudePrompt: "สรุป Terraform Associate Cheat Sheet สำหรับสอบ: terraform commands ทั้งหมดที่ต้องรู้, count vs for_each เลือกเมื่อไหร่, state locking คืออะไร, Terraform Cloud features vs OSS, provisioner ใช้เมื่อไหร่และ best practice คืออะไร — เป็น bullet points กระชับ",
   },
 ];
 

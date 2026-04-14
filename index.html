@@ -6,10 +6,16 @@
     <title>120-Day Cert Tracker · AWS SAA-C03 + Terraform</title>
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; }
-      body { background: #F8FAFC; }
     </style>
+    <script>
+      try {
+        if (JSON.parse(localStorage.getItem('roadmap_dark_mode'))) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch(e) {}
+    </script>
   </head>
-  <body>
+  <body class="bg-gray-50 dark:bg-gray-900">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
