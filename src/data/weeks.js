@@ -1,0 +1,220 @@
+export const WEEKS = [
+  // ── Phase 1: AWS SAA-C03 ──────────────────────────────────────────────────
+  {
+    id: 1, phase: "aws", weekNum: 1,
+    dayRange: "Day 1–7", startDay: 1, endDay: 7,
+    title: "Cloud Concepts & IAM",
+    topics: [
+      "Cloud concepts & AWS Global Infrastructure",
+      "IAM Users/Roles/Policies",
+      "MFA & STS",
+      "AWS Organizations",
+    ],
+  },
+  {
+    id: 2, phase: "aws", weekNum: 2,
+    dayRange: "Day 8–14", startDay: 8, endDay: 14,
+    title: "EC2 & Compute",
+    topics: [
+      "EC2 instance types",
+      "AMI & Snapshots",
+      "Security Groups",
+      "Elastic IP",
+      "Placement Groups",
+      "User Data scripts",
+    ],
+  },
+  {
+    id: 3, phase: "aws", weekNum: 3,
+    dayRange: "Day 15–21", startDay: 15, endDay: 21,
+    title: "S3, EBS & Storage",
+    topics: [
+      "S3 storage classes",
+      "Bucket policy & ACL",
+      "Versioning & Lifecycle",
+      "EBS types (gp3/io2)",
+      "EFS & FSx",
+    ],
+  },
+  {
+    id: 4, phase: "aws", weekNum: 4,
+    dayRange: "Day 22–30", startDay: 22, endDay: 30,
+    title: "VPC & Networking",
+    topics: [
+      "VPC Subnets & Route Tables",
+      "Internet GW & NAT GW",
+      "VPC Peering",
+      "Transit Gateway",
+      "PrivateLink",
+      "SG vs NACL",
+    ],
+  },
+  {
+    id: 5, phase: "aws", weekNum: 5,
+    dayRange: "Day 31–38", startDay: 31, endDay: 38,
+    title: "Load Balancing & Auto Scaling",
+    topics: [
+      "ALB / NLB / GWLB",
+      "Auto Scaling Group",
+      "Launch Templates",
+      "Scaling policies",
+    ],
+  },
+  {
+    id: 6, phase: "aws", weekNum: 6,
+    dayRange: "Day 39–46", startDay: 39, endDay: 46,
+    title: "Databases",
+    topics: [
+      "RDS Multi-AZ vs Read Replica",
+      "Aurora Serverless",
+      "DynamoDB GSI/LSI",
+      "ElastiCache Redis/Memcached",
+    ],
+  },
+  {
+    id: 7, phase: "aws", weekNum: 7,
+    dayRange: "Day 47–54", startDay: 47, endDay: 54,
+    title: "Serverless & DNS",
+    topics: [
+      "Lambda & API Gateway",
+      "ECS / EKS / Fargate",
+      "ECR",
+      "Route 53 routing policies",
+      "CloudFront & WAF",
+    ],
+  },
+  {
+    id: 8, phase: "aws", weekNum: 8,
+    dayRange: "Day 55–60", startDay: 55, endDay: 60,
+    title: "Security & Monitoring",
+    topics: [
+      "KMS & CloudHSM",
+      "GuardDuty & Inspector",
+      "CloudWatch & CloudTrail",
+      "SQS / SNS / EventBridge",
+      "Step Functions",
+    ],
+  },
+  {
+    id: 9, phase: "aws", weekNum: 9,
+    dayRange: "Day 61–68", startDay: 61, endDay: 68,
+    title: "Architecture & Migration",
+    topics: [
+      "Well-Architected 5 Pillars",
+      "AWS Organizations & Control Tower",
+      "Migration 6R strategies",
+      "Snow family",
+      "Cost Explorer",
+    ],
+  },
+  {
+    id: 10, phase: "aws", weekNum: 10,
+    dayRange: "Day 69–74", startDay: 69, endDay: 74,
+    title: "Mock Exam Practice (Set 1–3)",
+    topics: [
+      "Tutorials Dojo mock exam set 1 (65 ข้อ)",
+      "Tutorials Dojo mock exam set 2 (65 ข้อ)",
+      "Tutorials Dojo mock exam set 3 (65 ข้อ)",
+      "วิเคราะห์ข้อที่ผิด",
+      "ทบทวน Cheat Sheets",
+    ],
+  },
+  {
+    id: 11, phase: "aws", weekNum: 11,
+    dayRange: "Day 75–80", startDay: 75, endDay: 80,
+    title: "Final AWS Exam Prep 🎯",
+    topics: [
+      "Mock exam set 4 (65 ข้อ)",
+      "Mock exam set 5 (65 ข้อ)",
+      "ทบทวน Weak areas",
+      "ตั้งเป้า 78%+ ก่อนจองสอบ",
+      "สอบ AWS SAA-C03 🎯",
+    ],
+  },
+  // ── Phase 2: Terraform Associate ─────────────────────────────────────────
+  {
+    id: 12, phase: "terraform", weekNum: 12,
+    dayRange: "Day 81–88", startDay: 81, endDay: 88,
+    title: "Terraform Fundamentals",
+    topics: [
+      "terraform init/plan/apply/destroy",
+      "Providers (AWS/Azure)",
+      "Resources & Data sources",
+      "Variables & Outputs",
+      "Local values",
+    ],
+  },
+  {
+    id: 13, phase: "terraform", weekNum: 13,
+    dayRange: "Day 89–95", startDay: 89, endDay: 95,
+    title: "State Management",
+    topics: [
+      "terraform.tfstate",
+      "Remote backend (S3 + DynamoDB lock)",
+      "terraform import",
+      "State lock",
+      "Workspaces",
+    ],
+  },
+  {
+    id: 14, phase: "terraform", weekNum: 14,
+    dayRange: "Day 96–100", startDay: 96, endDay: 100,
+    title: "Modules & Advanced HCL",
+    topics: [
+      "Module structure",
+      "Terraform Registry",
+      "Count & for_each",
+      "Dynamic blocks",
+      "Lifecycle rules",
+    ],
+  },
+  {
+    id: 15, phase: "terraform", weekNum: 15,
+    dayRange: "Day 101–108", startDay: 101, endDay: 108,
+    title: "Terraform Cloud & Real-World",
+    topics: [
+      "Provisioners",
+      "Terraform Cloud / HCP",
+      "Sensitive variables",
+      "Build real AWS infra with Terraform",
+      "CI/CD basics",
+    ],
+  },
+  {
+    id: 16, phase: "terraform", weekNum: 16,
+    dayRange: "Day 109–115", startDay: 109, endDay: 115,
+    title: "Terraform Exam Practice",
+    topics: [
+      "HashiCorp sample questions",
+      "ExamPro practice set",
+      "Review all CLI commands",
+      "Focus: state & workflow & modules",
+    ],
+  },
+  {
+    id: 17, phase: "terraform", weekNum: 17,
+    dayRange: "Day 116–120", startDay: 116, endDay: 120,
+    title: "Final Terraform Exam Prep 🎯",
+    topics: [
+      "Final review all topics",
+      "จอง exam slot",
+      "สอบ Terraform Associate 🎯",
+    ],
+  },
+];
+
+export const COURSES = {
+  aws: [
+    { name: "Adrian Cantrill", platform: "learn.cantrill.io", type: "paid", price: "~$40", note: "Best quality + lab-heavy ⭐⭐⭐" },
+    { name: "Stephane Maarek", platform: "Udemy", type: "paid", price: "~$15 on sale", note: "Most popular globally ⭐⭐⭐" },
+    { name: "Andrew Brown (freeCodeCamp YouTube)", platform: "YouTube", type: "free", price: "FREE", note: "14+ hours full course ⭐⭐" },
+    { name: "AWS Skill Builder", platform: "skillbuilder.aws", type: "free", price: "FREE", note: "Official AWS training ⭐⭐" },
+    { name: "Tutorials Dojo Practice Exams", platform: "tutorialsdojo.com", type: "paid", price: "~$15", note: "MUST HAVE for exam prep ⭐⭐⭐" },
+  ],
+  terraform: [
+    { name: "HashiCorp Developer Tutorials", platform: "developer.hashicorp.com", type: "free", price: "FREE", note: "Official tutorials ⭐⭐⭐" },
+    { name: "Zeal Vora", platform: "Udemy", type: "paid", price: "~$15 on sale", note: "Top-rated for Terraform cert ⭐⭐⭐" },
+    { name: "KodeKloud", platform: "kodekloud.com", type: "free", price: "Free tier available", note: "Browser-based hands-on labs ⭐⭐" },
+    { name: "HashiCorp Sample Questions", platform: "Official study guide", type: "free", price: "FREE", note: "From official study guide ⭐⭐" },
+  ],
+};
