@@ -5,22 +5,26 @@ export default function Header({ currentDay, startDate, setStartDate, darkMode, 
   const [newDate, setNewDate] = useState(startDate);
 
   const isPhase1 = currentDay <= 80;
-  const phaseLabel = isPhase1 ? "AWS SAA-C03" : "Terraform Associate";
-  const phaseStartDay = isPhase1 ? 1 : 81;
-  const phaseEndDay = isPhase1 ? 80 : 120;
+  const isPhase2 = currentDay > 80 && currentDay <= 120;
+  const isPhase3 = currentDay > 120;
+  const phaseLabel = isPhase1 ? "AWS SAA-C03" : isPhase2 ? "Terraform Associate" : "AI Engineering";
+  const phaseStartDay = isPhase1 ? 1 : isPhase2 ? 81 : 121;
+  const phaseEndDay   = isPhase1 ? 80 : isPhase2 ? 120 : 150;
   const phaseTotalDays = phaseEndDay - phaseStartDay + 1;
   const phaseDay = Math.min(Math.max(currentDay - phaseStartDay + 1, 1), phaseTotalDays);
   const phaseProgress = Math.round((phaseDay / phaseTotalDays) * 100);
-  const overallProgress = Math.round((currentDay / 120) * 100);
+  const overallProgress = Math.round((currentDay / 150) * 100);
   const daysToAWS = Math.max(0, 80 - currentDay + 1);
-  const daysToTF = Math.max(0, 120 - currentDay + 1);
+  const daysToTF  = Math.max(0, 120 - currentDay + 1);
+  const daysToAI  = Math.max(0, 150 - currentDay + 1);
 
-  const accent = isPhase1 ? "amber" : "green";
-  const barBg = isPhase1 ? "bg-amber-500" : "bg-green-600";
-  const textAccent = isPhase1 ? "text-amber-500" : "text-green-600";
-  const bgLight = isPhase1
+  const barBg      = isPhase1 ? "bg-amber-500" : isPhase2 ? "bg-green-600" : "bg-purple-600";
+  const textAccent = isPhase1 ? "text-amber-500" : isPhase2 ? "text-green-600" : "text-purple-600";
+  const bgLight    = isPhase1
     ? "bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800"
-    : "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800";
+    : isPhase2
+    ? "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800"
+    : "bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800";
 
   const formatDate = (d) =>
     new Date(d).toLocaleDateString("th-TH", { year: "numeric", month: "short", day: "numeric" });
@@ -32,7 +36,7 @@ export default function Header({ currentDay, startDate, setStartDate, darkMode, 
         <div className="flex items-start justify-between mb-4">
           <div>
             <h1 className="text-lg font-bold text-gray-900 dark:text-white leading-tight">
-              ☁️🏗️ 120-Day Cert Tracker
+              ☁️🏗️🤖 150-Day Cert Tracker
             </h1>
             <p className={`text-sm font-semibold ${textAccent}`}>{phaseLabel}</p>
           </div>
@@ -51,7 +55,7 @@ export default function Header({ currentDay, startDate, setStartDate, darkMode, 
             <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">วันปัจจุบัน</span>
             <span className={`text-3xl font-black ${textAccent}`}>
               Day {currentDay}
-              <span className="text-sm font-normal text-gray-400 ml-1">/ 120</span>
+              <span className="text-sm font-normal text-gray-400 ml-1">/ 150</span>
             </span>
           </div>
 
@@ -85,7 +89,7 @@ export default function Header({ currentDay, startDate, setStartDate, darkMode, 
         </div>
 
         {/* Exam countdowns */}
-        <div className="grid grid-cols-2 gap-3 mb-4">
+        <div className="grid grid-cols-3 gap-2 mb-4">
           <div className={`rounded-lg p-3 text-center border ${daysToAWS === 0 ? "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800" : "bg-gray-50 dark:bg-gray-700 border-gray-100 dark:border-gray-600"}`}>
             <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">AWS SAA-C03</p>
             <p className={`text-xl font-black ${daysToAWS === 0 ? "text-green-600" : "text-amber-500"}`}>
@@ -94,11 +98,18 @@ export default function Header({ currentDay, startDate, setStartDate, darkMode, 
             <p className="text-xs text-gray-400">{daysToAWS === 0 ? "สอบแล้ว!" : "วันถึงสอบ"}</p>
           </div>
           <div className={`rounded-lg p-3 text-center border ${daysToTF === 0 ? "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800" : "bg-gray-50 dark:bg-gray-700 border-gray-100 dark:border-gray-600"}`}>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Terraform Assoc.</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Terraform</p>
             <p className={`text-xl font-black ${daysToTF === 0 ? "text-green-600" : "text-green-600"}`}>
               {daysToTF === 0 ? "✅" : daysToTF}
             </p>
             <p className="text-xs text-gray-400">{daysToTF === 0 ? "สอบแล้ว!" : "วันถึงสอบ"}</p>
+          </div>
+          <div className={`rounded-lg p-3 text-center border ${daysToAI === 0 ? "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800" : "bg-gray-50 dark:bg-gray-700 border-gray-100 dark:border-gray-600"}`}>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">AI Eng 🚀</p>
+            <p className={`text-xl font-black ${daysToAI === 0 ? "text-green-600" : "text-purple-600"}`}>
+              {daysToAI === 0 ? "✅" : daysToAI}
+            </p>
+            <p className="text-xs text-gray-400">{daysToAI === 0 ? "เสร็จแล้ว!" : "วันถึงเป้า"}</p>
           </div>
         </div>
 

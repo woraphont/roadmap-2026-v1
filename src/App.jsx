@@ -53,7 +53,7 @@ export default function App() {
     today.setHours(0, 0, 0, 0);
     start.setHours(0, 0, 0, 0);
     const diff = Math.floor((today - start) / 86400000) + 1;
-    return Math.min(Math.max(1, diff), 120);
+    return Math.min(Math.max(1, diff), 150);
   }, [startDate]);
 
   // Find which week is active today

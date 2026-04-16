@@ -50,6 +50,18 @@ export default function CoursesPanel() {
         {open === "terraform" && COURSES.terraform.map(c => <CourseItem key={c.name} course={c} />)}
       </div>
 
+      {/* AI Engineering */}
+      <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <button
+          onClick={() => setOpen(open === "ai" ? "" : "ai")}
+          className="w-full px-5 py-3.5 flex items-center justify-between bg-purple-50 dark:bg-purple-900/10 hover:bg-purple-100 dark:hover:bg-purple-900/20 transition-colors"
+        >
+          <span className="font-bold text-purple-700 dark:text-purple-400 text-sm">🤖 AI Engineering Resources</span>
+          <span className={`text-gray-400 text-xs transition-transform duration-200 ${open === "ai" ? "rotate-180" : ""}`}>▼</span>
+        </button>
+        {open === "ai" && COURSES.ai.map(c => <CourseItem key={c.name} course={c} />)}
+      </div>
+
       {/* Budget */}
       <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
         <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-3">💰 ประมาณค่าใช้จ่ายทั้งหมด</h3>
@@ -60,7 +72,8 @@ export default function CoursesPanel() {
             ["Zeal Vora — Terraform (Udemy)", "~$15", "text-amber-600 dark:text-amber-400"],
             ["ค่าสอบ AWS SAA-C03", "$150", "text-red-500"],
             ["ค่าสอบ Terraform Associate", "$70.50", "text-red-500"],
-            ["คอร์สฟรี (freeCodeCamp, HashiCorp, AWS)", "FREE", "text-green-600 dark:text-green-400"],
+            ["คอร์สฟรี (freeCodeCamp, HashiCorp, DeepLearning.AI)", "FREE", "text-green-600 dark:text-green-400"],
+            ["AI Engineering (Anthropic/OpenAI/Gemini APIs)", "~$5–10/mo", "text-purple-600 dark:text-purple-400"],
           ].map(([label, price, cls]) => (
             <div key={label} className="flex justify-between items-center text-sm">
               <span className="text-gray-600 dark:text-gray-400 text-xs">{label}</span>
@@ -70,9 +83,9 @@ export default function CoursesPanel() {
         </div>
         <div className="border-t border-gray-100 dark:border-gray-700 mt-3 pt-3 flex justify-between items-center">
           <span className="font-bold text-gray-900 dark:text-white text-sm">รวม (paid courses + ค่าสอบ)</span>
-          <span className="font-black text-amber-500">~$280–295</span>
+          <span className="font-black text-amber-500">~$290–310</span>
         </div>
-        <p className="text-xs text-gray-400 mt-1">≈ 10,000–11,000 บาท · ได้ Cert 2 ใบ</p>
+        <p className="text-xs text-gray-400 mt-1">≈ 10,000–11,000 บาท · ได้ Cert 2 ใบ + AI Eng skills</p>
       </div>
     </div>
   );

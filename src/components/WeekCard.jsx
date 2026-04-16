@@ -6,6 +6,8 @@ export default function WeekCard({ week, isCurrentWeek, checkboxes, note, onChec
   const [copied, setCopied] = useState(false);
 
   const isAWS = week.phase === "aws";
+  const isTF  = week.phase === "terraform";
+  const isAI  = week.phase === "ai";
   const isDone = currentDay > week.endDay;
 
   const checkedCount = week.topics.filter((_, i) => checkboxes[`w${week.id}_t${i}`]).length;
@@ -13,18 +15,21 @@ export default function WeekCard({ week, isCurrentWeek, checkboxes, note, onChec
   const allDone = checkedCount === totalTopics;
   const status = allDone ? "Done" : checkedCount > 0 ? "In Progress" : "Not Started";
 
-  // Styles based on state
   const cardBorder = isCurrentWeek
-    ? isAWS
-      ? "border-2 border-amber-400 shadow-md"
-      : "border-2 border-green-500 shadow-md"
+    ? isAWS ? "border-2 border-amber-400 shadow-md"
+    : isTF  ? "border-2 border-green-500 shadow-md"
+    :         "border-2 border-purple-500 shadow-md"
     : allDone
     ? "border border-green-200 dark:border-green-900/50"
     : "border border-gray-200 dark:border-gray-700";
 
   const phaseBadge = isAWS
     ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
-    : "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400";
+    : isTF
+    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+    : "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400";
+
+  const phaseLabel = isAWS ? "AWS" : isTF ? "Terraform" : "AI Eng";
 
   const statusBadge = {
     Done: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
@@ -32,15 +37,15 @@ export default function WeekCard({ week, isCurrentWeek, checkboxes, note, onChec
     "Not Started": "bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400",
   }[status];
 
-  const accentBar = isAWS ? "bg-amber-500" : "bg-green-600";
-  const ringColor = isAWS ? "focus:ring-amber-500" : "focus:ring-green-500";
-  const checkAccent = isAWS ? "accent-amber-500" : "accent-green-600";
+  const accentBar  = isAWS ? "bg-amber-500" : isTF ? "bg-green-600" : "bg-purple-600";
+  const ringColor  = isAWS ? "focus:ring-amber-500" : isTF ? "focus:ring-green-500" : "focus:ring-purple-500";
+  const checkAccent = isAWS ? "accent-amber-500" : isTF ? "accent-green-600" : "accent-purple-600";
 
   return (
     <div className={`rounded-xl bg-white dark:bg-gray-800 transition-all duration-200 ${cardBorder} ${isDone && !allDone ? "opacity-60" : ""}`}>
       {/* YOU ARE HERE banner */}
       {isCurrentWeek && (
-        <div className={`px-4 py-1.5 text-xs font-bold text-white rounded-t-[10px] ${isAWS ? "bg-amber-500" : "bg-green-600"}`}>
+        <div className={`px-4 py-1.5 text-xs font-bold text-white rounded-t-[10px] ${isAWS ? "bg-amber-500" : isTF ? "bg-green-600" : "bg-purple-600"}`}>
           📍 YOU ARE HERE · {week.dayRange}
         </div>
       )}
@@ -56,7 +61,7 @@ export default function WeekCard({ week, isCurrentWeek, checkboxes, note, onChec
           </span>
           <span className="text-xs text-gray-400 shrink-0">{week.dayRange}</span>
           <span className={`text-xs font-medium px-2 py-0.5 rounded-full shrink-0 ${phaseBadge}`}>
-            {isAWS ? "AWS" : "Terraform"}
+            {phaseLabel}
           </span>
           {allDone && <span className="text-green-500 shrink-0">✅</span>}
         </div>
@@ -118,13 +123,15 @@ export default function WeekCard({ week, isCurrentWeek, checkboxes, note, onChec
 
           {/* Claude Prompt */}
           {week.claudePrompt && (
-            <div className={`mt-3 rounded-lg border overflow-hidden ${isAWS ? "border-amber-200 dark:border-amber-800/50" : "border-green-200 dark:border-green-800/50"}`}>
+            <div className={`mt-3 rounded-lg border overflow-hidden ${isAWS ? "border-amber-200 dark:border-amber-800/50" : isTF ? "border-green-200 dark:border-green-800/50" : "border-purple-200 dark:border-purple-800/50"}`}>
               <button
                 onClick={() => setShowPrompt(!showPrompt)}
                 className={`w-full flex items-center justify-between px-3 py-2 text-xs font-medium transition-colors ${
                   isAWS
                     ? "bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/30"
-                    : "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-900/30"
+                    : isTF
+                    ? "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-900/30"
+                    : "bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 hover:bg-purple-100 dark:hover:bg-purple-900/30"
                 }`}
               >
                 <span>🤖 ถาม Claude Code · Week {week.weekNum}: {week.title}</span>
@@ -147,7 +154,9 @@ export default function WeekCard({ week, isCurrentWeek, checkboxes, note, onChec
                         ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
                         : isAWS
                         ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 hover:bg-amber-200 dark:hover:bg-amber-900/50"
-                        : "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-900/50"
+                        : isTF
+                        ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-900/50"
+                        : "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400 hover:bg-purple-200 dark:hover:bg-purple-900/50"
                     }`}
                   >
                     {copied ? "✅ คัดลอกแล้ว!" : "📋 คัดลอก Prompt"}
