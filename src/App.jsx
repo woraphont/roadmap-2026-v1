@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { WEEKS } from "./data/weeks";
 import WelcomeScreen from "./components/WelcomeScreen";
 import Header from "./components/Header";
@@ -45,18 +45,17 @@ export default function App() {
 
   const setStartDate = (d) => setStartDateRaw(d);
 
-  // Auto-calculate current day from start date
-  const currentDay = useMemo(() => {
-    if (!startDate) return 0;
-    const start = new Date(startDate);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    start.setHours(0, 0, 0, 0);
-    const diff = Math.floor((today - start) / 86400000) + 1;
-    return Math.min(Math.max(1, diff), 150);
-  }, [startDate]);
+  // Manual day counter — only advances when user confirms
+  const [currentDay, setCurrentDayRaw] = useLocalState("roadmap_current_day", 1);
+  const setCurrentDay = useCallback((val) => {
+    const next = typeof val === "function" ? val(currentDay) : val;
+    setCurrentDayRaw(Math.min(Math.max(1, next), 150));
+  }, [currentDay, setCurrentDayRaw]);
 
-  // Find which week is active today
+  const advanceDay = useCallback(() => setCurrentDay(d => d + 1), [setCurrentDay]);
+  const retreatDay = useCallback(() => setCurrentDay(d => d - 1), [setCurrentDay]);
+
+  // Find which week is active
   const currentWeekId = useMemo(() => {
     if (!currentDay) return null;
     const w = WEEKS.find(w => currentDay >= w.startDay && currentDay <= w.endDay);
@@ -78,6 +77,9 @@ export default function App() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
       <Header
         currentDay={currentDay}
+        setCurrentDay={setCurrentDay}
+        advanceDay={advanceDay}
+        retreatDay={retreatDay}
         startDate={startDate}
         setStartDate={setStartDate}
         darkMode={darkMode}

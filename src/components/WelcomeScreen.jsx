@@ -9,20 +9,21 @@ export default function WelcomeScreen({ onSetDate, darkMode, setDarkMode }) {
         <div className="text-center mb-6">
           <div className="text-5xl mb-3">☁️🏗️</div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-            120-Day Cert Tracker
+            150-Day Cert Tracker
           </h1>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-            AWS SAA-C03 → Terraform Associate
+            AWS SAA-C03 → Terraform → AI Engineering
           </p>
         </div>
 
         <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4 mb-6">
           <p className="text-xs font-semibold text-amber-800 dark:text-amber-300 mb-2">
-            📋 แผนการเรียน 120 วัน
+            📋 แผนการเรียน 150 วัน
           </p>
           <ul className="text-xs text-amber-700 dark:text-amber-400 space-y-1">
             <li>• Day 1–80: AWS Solutions Architect Associate</li>
             <li>• Day 81–120: HashiCorp Terraform Associate 003</li>
+            <li>• Day 121–150: AI Engineering Fundamentals 🤖</li>
           </ul>
         </div>
 
